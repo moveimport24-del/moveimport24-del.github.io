@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <script>
 (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
 m[i].l=1*new Date();for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r){return;}}
@@ -11,30 +11,551 @@ k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNo
 ym(113125555,"init",{clickmap:true,trackLinks:true,accurateTrackBounce:true,webvisor:true});
 </script>
 <noscript><div><img src="https://mc.yandex.ru/watch/113125555" style="position:absolute;left:-9999px" alt=""></div></noscript>
-<title>Сайты с заявками в Telegram — Филипп</title>
-<meta name="description" content="Лендинги и квизы с заявками в Telegram и Google Таблицу. Запуск за 3–7 дней.">
+<title>Филипп — сайты с заявками</title>
+<meta name="description" content="Лендинги с квизом и калькулятором за 3–7 дней. Заявки сразу в Telegram и Google Таблицу, Яндекс Метрика с целями — под ключ.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <link rel="canonical" href="https://moveimport24-del.github.io/">
-<style>
-:root{--bg:#EEF2EF;--ink:#14201C;--muted:#56655F;--brass:#9A6B17;--line:#C9D4CE}
-@media (prefers-color-scheme: dark){:root{--bg:#0E1714;--ink:#E4ECE7;--muted:#9AABA3;--brass:#D6A64E;--line:#2A3D35;color-scheme:dark}}
-body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif}
-main{max-width:720px;margin:0 auto;padding:64px 20px}
-h1{font-size:clamp(32px,6vw,52px);line-height:1.05;margin:0 0 16px}
-p{color:var(--muted)}
-a.case{display:block;border:1px solid var(--line);border-radius:10px;padding:20px;margin-top:28px;text-decoration:none;color:inherit}
-a.case:hover{border-color:var(--brass)}
-a.case b{display:block;font-size:20px}
-small{color:var(--brass);font-weight:600;letter-spacing:.08em;text-transform:uppercase;font-size:12px}
-</style>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%23101318'/%3E%3Ctext x='32' y='43' text-anchor='middle' font-family='Arial' font-weight='700' font-size='30' fill='%23fff'%3EФ%3C/text%3E%3C/svg%3E">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Филипп — сайты, которые сами приносят заявки в Telegram">
+<meta property="og:description" content="Лендинги с квизом и калькулятором за 3–7 дней. Заявки в Telegram и Google Таблицу, Метрика с целями.">
+<meta property="og:url" content="https://moveimport24-del.github.io/">
+<meta property="og:locale" content="ru_RU">
+<meta name="theme-color" content="#101318">
 </head>
 <body>
-<main>
-<small>Портфолио · скоро полная версия</small>
-<h1>Сайты, которые сами приводят заявки в Telegram</h1>
-<p>Лендинги и квизы с передачей заявок в Telegram и Google Таблицу. Запуск за 3–7 дней.</p>
-<a class="case" href="kromka.html"><small>Кейс 1 · демо</small><b>Барбершоп «Кромка»</b><span>Квиз подбора стрижки: цена и время на экране, заявка в Telegram.</span></a>
-<a class="case" href="otves.html"><small>Кейс 2 · демо</small><b>Ремонт квартир «Отвес»</b><span>Калькулятор сметы: работы, материалы и сроки отдельно, заявка в Telegram.</span></a>
-<a class="case" href="unit.html"><small>Кейс 3 · демо</small><b>Наставник по маркетплейсам «Юнит»</b><span>Квиз-диагностика и калькулятор юнит-экономики WB, заявка в Telegram.</span></a>
+<style>
+:root{
+  --bg:#F4F5F7; --card:#FFFFFF; --ink:#101318; --muted:#5A6170; --line:#D9DCE2; --soft:#EAECF0;
+  --blue:#2F6BFF; --blue-ink:#1E4FD6; --blue-soft:#E3EBFF; --ok:#16875A; --err:#C0392B;
+  --tg-bg:#0E1621; --tg-bubble:#182533; --tg-text:#E7ECF2; --tg-muted:#7E8C9A;
+  --display:"Manrope",system-ui,sans-serif; --body:"Manrope",system-ui,-apple-system,"Segoe UI",sans-serif; --mono:"IBM Plex Mono",ui-monospace,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){ --bg:#0D0F13; --card:#161A20; --ink:#ECEEF2; --muted:#9AA1AE; --line:#272C35; --soft:#1C2027; --blue:#5B8CFF; --blue-ink:#8FB0FF; --blue-soft:#18223A; --ok:#4CC38A; --err:#EF7A6C; color-scheme:dark; }
+}
+:root[data-theme="dark"]{ --bg:#0D0F13; --card:#161A20; --ink:#ECEEF2; --muted:#9AA1AE; --line:#272C35; --soft:#1C2027; --blue:#5B8CFF; --blue-ink:#8FB0FF; --blue-soft:#18223A; --ok:#4CC38A; --err:#EF7A6C; color-scheme:dark; }
+*{box-sizing:border-box}
+html,body{overflow-x:clip}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+body{margin:0;background:var(--bg);color:var(--ink);font:500 16px/1.6 var(--body)}
+.wrap{max-width:1160px;margin:0 auto;padding-inline:20px}
+a{color:inherit}
+h1,h2,h3{font-family:var(--display);font-weight:800;line-height:1.04;letter-spacing:-.025em;text-wrap:balance;margin:0}
+h2{font-size:clamp(32px,4.6vw,54px)}
+.lead{color:var(--muted);max-width:60ch;font-weight:500}
+.num{font-family:var(--mono);font-variant-numeric:tabular-nums}
+:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
+.label{font:500 12px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--blue-ink);margin-bottom:16px;display:flex;align-items:center;gap:10px}
+.label::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--blue);box-shadow:0 0 0 4px var(--blue-soft)}
+
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:40;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:12px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.logo .av{width:36px;height:36px;border-radius:50%;background:var(--ink);color:var(--bg);display:grid;place-items:center;font:800 16px var(--display)}
+.logo b{font:800 18px/1.1 var(--display);display:block;color:var(--ink)}
+.logo span{font:500 12px/1.2 var(--body);color:var(--muted)}
+.nav{display:flex;gap:22px;font-size:14px}
+.nav a{text-decoration:none;color:var(--muted)}
+.nav a:hover{color:var(--ink)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:12px;font:700 15px/1 var(--body);padding:15px 22px;cursor:pointer;text-decoration:none;transition:transform .15s,background .2s,box-shadow .2s}
+.btn:active{transform:translateY(1px)}
+.btn-blue{background:var(--blue);color:#fff}
+.btn-blue:hover{box-shadow:0 10px 24px -10px var(--blue)}
+.btn-line{background:transparent;color:var(--ink);border:1.5px solid var(--line)}
+.btn-line:hover{border-color:var(--ink)}
+.tg-ico{width:18px;height:18px}
+@media (max-width:900px){.nav{display:none}}
+.progress-line{position:absolute;left:0;right:0;bottom:-1px;height:2px;background:var(--blue);transform-origin:left;transform:scaleX(var(--sp,0))}
+
+/* hero */
+.hero{padding-block:48px 64px}
+.hero .wrap{display:grid;grid-template-columns:1.25fr .85fr;gap:40px;align-items:center}
+.hero h1{font-size:clamp(38px,5vw,64px)}
+.hero h1 .ln{display:block}
+.hero h1 .tg{color:var(--blue)}
+.hero .lead{font-size:18px;margin:20px 0 26px}
+.checks{list-style:none;padding:0;margin:26px 0 0;display:grid;grid-template-columns:1fr 1fr;gap:8px 20px;font-size:15px}
+.checks li{display:flex;gap:10px;align-items:flex-start}
+.checks li::before{content:"";flex:none;width:18px;height:18px;margin-top:3px;border-radius:50%;background:var(--blue-soft) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18'%3E%3Cpath d='M5 9.5l2.5 2.5L13 6.5' fill='none' stroke='%232F6BFF' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/18px no-repeat}
+@media (max-width:980px){.hero .wrap{grid-template-columns:1fr}}
+@media (max-width:460px){.checks{grid-template-columns:1fr}}
+
+/* phone with telegram */
+.phone{width:min(340px,100%);margin-inline:auto;background:#05070A;border-radius:42px;padding:12px;box-shadow:0 40px 80px -40px rgba(16,19,24,.55),inset 0 0 0 2px #2A2F37}
+.screen{background:var(--tg-bg);border-radius:32px;overflow:hidden;height:560px;display:flex;flex-direction:column}
+.tg-head{display:flex;align-items:center;gap:10px;padding:34px 16px 12px;background:#17212B;color:var(--tg-text)}
+.tg-head .ava{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#5B8CFF,#2F6BFF);display:grid;place-items:center;font:800 14px var(--display);color:#fff}
+.tg-head b{display:block;font:700 15px var(--body)}
+.tg-head span{font:500 12px var(--body);color:var(--tg-muted)}
+.feed{flex:1;display:flex;flex-direction:column;justify-content:flex-end;gap:8px;padding:12px;overflow:hidden}
+.msg{background:var(--tg-bubble);color:var(--tg-text);border-radius:14px 14px 14px 4px;padding:9px 11px;font:500 12.5px/1.45 var(--body);white-space:pre-line;max-width:94%;animation:pop .45s cubic-bezier(.2,1.3,.4,1) both}
+.msg .src{display:block;font:500 10.5px var(--mono);color:#6EA8FF;margin-bottom:3px}
+.msg time{display:block;text-align:right;font:500 10px var(--mono);color:var(--tg-muted);margin-top:3px}
+@keyframes pop{from{opacity:0;transform:translateY(16px) scale(.96)}to{opacity:1;transform:none}}
+.phone-cap{text-align:center;font:500 12px var(--mono);color:var(--muted);margin-top:14px}
+
+/* cases */
+section.block{padding-block:84px}
+.sec-head{display:grid;grid-template-columns:1.1fr 1fr;gap:26px;align-items:end;margin-bottom:38px}
+@media (max-width:860px){.sec-head{grid-template-columns:1fr}}
+.cases{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.case{background:var(--card);border:1px solid var(--line);border-radius:20px;overflow:hidden;display:flex;flex-direction:column;text-decoration:none;transition:transform .25s cubic-bezier(.3,1.4,.5,1),box-shadow .25s}
+.case:hover{translate:0 -6px;box-shadow:0 26px 50px -30px rgba(16,19,24,.45)}
+.case .pic{aspect-ratio:16/10;display:grid;place-items:center;position:relative;overflow:hidden}
+.case .pic svg{width:100%;height:100%;display:block}
+.case .body{padding:20px;display:grid;gap:10px;flex:1;align-content:start}
+.case .tag{font:500 11px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.case h3{font-size:22px}
+.case dl{margin:0;display:grid;gap:6px;font-size:14px}
+.case dt{font:600 11px var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--blue-ink)}
+.case dd{margin:0 0 6px;color:var(--muted)}
+.case .go{margin-top:auto;font-weight:700;color:var(--blue-ink);display:flex;align-items:center;gap:6px}
+@media (max-width:980px){.cases{grid-template-columns:1fr}}
+
+/* steps */
+.steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,1fr);gap:14px;counter-reset:s}
+.steps li{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px;counter-increment:s;position:relative}
+.steps li::before{content:counter(s);display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--ink);color:var(--bg);font:700 13px var(--mono);margin-bottom:12px}
+.steps h3{font-size:18px;margin-bottom:6px}
+.steps p{margin:0;color:var(--muted);font-size:14px}
+.steps .t{display:inline-block;margin-top:10px;font:600 12px var(--mono);color:var(--blue-ink);background:var(--blue-soft);padding:4px 8px;border-radius:6px}
+@media (max-width:1000px){.steps{grid-template-columns:1fr 1fr}}
+@media (max-width:540px){.steps{grid-template-columns:1fr}}
+
+/* included */
+.incl{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--line);border-radius:20px;overflow:hidden;background:var(--card)}
+.incl div{padding:22px;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+.incl div:nth-child(3n){border-right:0}
+.incl div:nth-last-child(-n+3){border-bottom:0}
+.incl b{display:block;font:800 17px var(--display);margin-bottom:4px}
+.incl span{color:var(--muted);font-size:14px}
+@media (max-width:860px){.incl{grid-template-columns:1fr}.incl div{border-right:0!important;border-bottom:1px solid var(--line)!important}.incl div:last-child{border-bottom:0!important}}
+
+/* prices */
+.prices{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.pr{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:24px;display:flex;flex-direction:column;gap:12px;position:relative}
+.pr.hit{border:2px solid var(--blue)}
+.pr .badge{position:absolute;top:-12px;left:24px;background:var(--blue);color:#fff;font:600 11px var(--mono);letter-spacing:.08em;text-transform:uppercase;padding:5px 10px;border-radius:999px}
+.pr h3{font-size:24px}
+.pr .p{font:800 36px/1 var(--display)}
+.pr .p small{font:500 14px var(--mono);color:var(--muted)}
+.pr ul{margin:0;padding-left:18px;color:var(--muted);display:grid;gap:6px;font-size:15px;flex:1}
+.pr .btn{align-self:flex-start}
+.extras{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:18px;border:1px solid var(--line);border-radius:16px;background:var(--card);overflow:hidden}
+.extras div{padding:16px 18px;border-right:1px solid var(--line);font-size:14px;color:var(--muted)}
+.extras div:last-child{border-right:0}
+.extras b{display:block;color:var(--ink);font:700 15px var(--body)}
+.promo{margin-top:18px;padding:16px 20px;border-radius:16px;background:var(--blue-soft);color:var(--blue-ink);font-weight:600;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.promo b{font:800 22px var(--display)}
+@media (max-width:980px){.prices{grid-template-columns:1fr}.extras{grid-template-columns:1fr 1fr}.extras div:nth-child(2){border-right:0}.extras div:nth-child(-n+2){border-bottom:1px solid var(--line)}}
+
+/* brief quiz */
+.brief{display:grid;grid-template-columns:.9fr 1.1fr;gap:28px;align-items:start}
+.bcard{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:22px}
+.wire{background:var(--soft);border-radius:14px;padding:12px}
+.wire svg{display:block;width:100%;height:auto}
+.wcap{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-top:12px;font:500 12px/1.4 var(--mono);color:var(--muted)}
+.wcap b{font:800 32px/1 var(--display);color:var(--ink)}
+.ln{fill:none;stroke-dasharray:1;stroke-dashoffset:1;opacity:0;transition:stroke-dashoffset .8s cubic-bezier(.6,0,.25,1)}
+.drawn .ln{stroke-dashoffset:0;opacity:1}
+.fill{opacity:0;transition:opacity .4s .3s}
+.drawn .fill,.fill.drawn{opacity:1}
+.bcard h3{font-size:24px;margin-bottom:12px}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.opt{display:flex;justify-content:space-between;align-items:center;gap:10px;width:100%;text-align:left;background:var(--bg);color:var(--ink);border:1.5px solid transparent;border-radius:12px;padding:13px 14px;font:600 14.5px/1.3 var(--body);cursor:pointer;transition:border-color .15s,background .15s}
+.opt small{font:500 11px var(--mono);color:var(--muted)}
+.opt:hover{border-color:var(--ink)}
+.opt[aria-pressed="true"]{border-color:var(--blue);background:var(--blue-soft)}
+@media (max-width:520px){.opts{grid-template-columns:1fr}}
+.qnav{display:flex;justify-content:space-between;align-items:center;margin-top:14px;min-height:24px;font:500 12px var(--mono);color:var(--muted)}
+.link{background:none;border:0;color:var(--muted);font:600 14px var(--body);cursor:pointer;padding:0;text-decoration:underline;text-underline-offset:3px}
+.rec{border:1.5px solid var(--blue);background:var(--blue-soft);border-radius:14px;padding:16px;margin-bottom:14px}
+.rec .n{font:800 22px var(--display)}
+.rec .p{font:600 15px var(--mono);margin:4px 0 8px}
+.rec ul{margin:0;padding-left:18px;font-size:14px;display:grid;gap:4px}
+.rec p{margin:8px 0 0;font-size:13px;color:var(--muted)}
+.field{display:grid;gap:6px;margin-bottom:12px}
+.field label{font-size:13px;color:var(--muted)}
+.field input{font:600 16px var(--body);padding:13px 14px;border:1.5px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink);width:100%}
+.field input[aria-invalid="true"]{border-color:var(--err)}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media (max-width:520px){.row2{grid-template-columns:1fr}}
+.err{color:var(--err);font-size:13px;min-height:18px}
+.consent{font-size:12px;color:var(--muted);margin-top:10px}
+.tg-demo{background:#17212B;color:#E9EEF2;border-radius:12px;padding:14px 16px;font:400 13px/1.55 var(--mono);white-space:pre-wrap;margin:12px 0 0}
+.done h3{color:var(--ok)}
+#qbox.swap{animation:qin .35s ease}
+@keyframes qin{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@media (max-width:900px){.brief{grid-template-columns:1fr}}
+
+/* about */
+.about{display:grid;grid-template-columns:auto 1fr;gap:34px;align-items:start;background:var(--card);border:1px solid var(--line);border-radius:24px;padding:32px}
+.about .ph{width:132px;height:132px;border-radius:24px;background:var(--ink);color:var(--bg);display:grid;place-items:center;font:800 56px var(--display)}
+.about h3{font-size:28px;margin-bottom:10px}
+.about p{margin:0 0 10px;color:var(--muted);max-width:66ch}
+.about .facts{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.about .facts span{font:600 13px var(--body);background:var(--soft);padding:7px 12px;border-radius:999px}
+@media (max-width:700px){.about{grid-template-columns:1fr;padding:22px}.about .ph{width:88px;height:88px;font-size:38px;border-radius:18px}}
+
+/* faq */
+.faq{display:grid;gap:10px;max-width:860px}
+.faq details{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:4px 20px}
+.faq summary{cursor:pointer;font:700 17px var(--body);padding:14px 0;list-style:none;display:flex;justify-content:space-between;gap:12px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font:500 22px var(--mono);color:var(--blue);transition:transform .2s}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq p{margin:0 0 16px;color:var(--muted)}
+
+.final{background:var(--ink);color:var(--bg);padding-block:80px}
+.final .wrap{display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:center}
+.final .lead{color:color-mix(in srgb,var(--bg) 70%,transparent);margin:16px 0 24px}
+.final .label{color:#8FB0FF}
+.contacts{display:grid;border-top:1px solid color-mix(in srgb,var(--bg) 22%,transparent)}
+.contacts div{display:grid;grid-template-columns:110px 1fr;gap:12px;padding:12px 0;border-bottom:1px solid color-mix(in srgb,var(--bg) 22%,transparent)}
+.contacts span{font:500 11px var(--mono);letter-spacing:.1em;text-transform:uppercase;opacity:.6;padding-top:3px}
+.contacts a{color:inherit}
+@media (max-width:860px){.final .wrap{grid-template-columns:1fr}}
+footer{padding-block:24px 96px;font-size:13px;color:var(--muted)}
+footer .wrap{display:flex;flex-wrap:wrap;gap:12px 32px;justify-content:space-between}
+.mcta{display:none}
+@media (max-width:900px){
+  .mcta{display:grid;grid-template-columns:1fr auto;gap:8px;position:fixed;left:0;right:0;bottom:0;z-index:30;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));background:var(--bg);border-top:1px solid var(--line)}
+  .top .btn{display:none}
+}
+
+@media (prefers-reduced-motion: no-preference){
+  .hero h1 .ln{animation:up .8s cubic-bezier(.2,.8,.2,1) both}
+  .hero h1 .ln:nth-child(2){animation-delay:.1s}
+  .hero h1 .ln:nth-child(3){animation-delay:.2s}
+  .hero .lead,.hero .cta,.hero .checks{animation:up .8s .3s cubic-bezier(.2,.8,.2,1) both}
+  .phone{animation:phoneIn 1s .2s cubic-bezier(.2,.8,.2,1) both}
+  @keyframes up{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}
+  @keyframes phoneIn{from{opacity:0;transform:translateY(40px) rotate(3deg)}to{opacity:1;transform:none}}
+  html.js .sec-head,html.js .case,html.js .steps li,html.js .incl,html.js .pr,html.js .bcard,html.js .about,html.js .faq details,html.js .final h2{opacity:0}
+  html.js .sec-head.in,html.js .case.in,html.js .steps li.in,html.js .incl.in,html.js .pr.in,html.js .bcard.in,html.js .about.in,html.js .faq details.in,html.js .final h2.in{animation:up .75s cubic-bezier(.2,.8,.2,1) both}
+  html.js .case.in:nth-child(2),html.js .pr.in:nth-child(2),html.js .steps li.in:nth-child(2),html.js .bcard.in:nth-child(2){animation-delay:.1s}
+  html.js .case.in:nth-child(3),html.js .pr.in:nth-child(3),html.js .steps li.in:nth-child(3){animation-delay:.2s}
+  html.js .steps li.in:nth-child(4){animation-delay:.3s}
+  html.js .steps li.in:nth-child(5){animation-delay:.4s}
+  /* «уведомление» — точка у метки секции пульсирует при появлении */
+  html.js .sec-head.in .label::before{animation:ping 1.2s .3s ease-out 2}
+  @keyframes ping{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--blue) 60%,transparent)}100%{box-shadow:0 0 0 14px transparent}}
+}
+</style>
+
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="#top"><span class="av" aria-hidden="true">Ф</span><span><b>Филипп</b><span>сайты с заявками в Telegram</span></span></a>
+    <nav class="nav" aria-label="Разделы"><a href="#cases">Кейсы</a><a href="#how">Как работаю</a><a href="#prices">Цены</a><a href="#brief">Рассчитать</a><a href="#faq">Вопросы</a></nav>
+    <a class="btn btn-blue" href="#brief">Рассчитать стоимость</a>
+  </div>
+  <i class="progress-line" aria-hidden="true"></i>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <p class="label">Лендинги · квизы · калькуляторы</p>
+        <h1><span class="ln">Сайт, который сам</span> <span class="ln">приносит заявки</span> <span class="ln tg">в ваш Telegram</span></h1>
+        <p class="lead">Делаю продающие лендинги с квизом или калькулятором за 3–7 дней. Заявка с ответами клиента приходит в Telegram и Google Таблицу через секунду после отправки.</p>
+        <div class="cta" style="display:flex;gap:12px;flex-wrap:wrap">
+          <a class="btn btn-blue" href="#brief">Рассчитать стоимость</a>
+          <a class="btn btn-line" href="https://t.me/phtuta" target="_blank" rel="noopener"><svg class="tg-ico" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M21.5 4.1 2.9 11.3c-1.3.5-1.3 1.2-.2 1.5l4.8 1.5 1.8 5.6c.2.6.1.9.8.9.5 0 .7-.2 1-.5l2.3-2.2 4.8 3.5c.9.5 1.5.2 1.7-.8l3.1-14.8c.3-1.3-.5-1.9-1.5-1.4ZM8.4 14l9.3-5.9c.5-.3.8-.1.5.2l-7.8 7.1-.3 3.2L8.4 14Z"/></svg>@phtuta</a>
+        </div>
+        <ul class="checks">
+          <li>Заявки в Telegram и таблицу</li><li>Квиз или калькулятор под нишу</li>
+          <li>Яндекс Метрика с целями</li><li>Хостинг и SSL — под ключ</li>
+        </ul>
+      </div>
+      <div>
+        <div class="phone" aria-label="Пример: заявки с сайтов приходят в Telegram">
+          <div class="screen">
+            <div class="tg-head"><span class="ava">З</span><span><b>Заявки с сайта</b><span>бот · онлайн</span></span></div>
+            <div class="feed" id="feed"></div>
+          </div>
+        </div>
+        <p class="phone-cap">так выглядят заявки с моих демо-сайтов</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="cases" style="padding-top:24px">
+    <div class="wrap">
+      <div class="sec-head"><div><p class="label">Кейсы</p><h2>Три сайта — три ниши</h2></div><p class="lead">Демо-проекты под реальные ниши: каждый рабочий, с квизом или калькулятором и отправкой заявок в Telegram. Откройте и пройдите — заявка придёт ко мне, как пришла бы вам.</p></div>
+      <div class="cases">
+        <a class="case" href="kromka.html">
+          <div class="pic" style="background:#E6EDE9"><svg viewBox="0 0 320 200" aria-hidden="true"><rect width="320" height="200" fill="#E6EDE9"/><circle cx="160" cy="100" r="62" fill="#D9E3DE" stroke="#9A6B17" stroke-width="7"/><ellipse cx="160" cy="108" rx="27" ry="33" fill="#E3B48C"/><path d="M131 96 Q128 68 150 62 Q168 57 184 64 Q194 72 189 96 Q186 82 176 78 Q160 82 146 79 Q136 84 131 96Z" fill="#2B211C"/><path d="M137 146 Q160 130 183 146 L190 162 H130Z" fill="#12392F"/><circle cx="150" cy="108" r="2.2" fill="#1A1714"/><circle cx="170" cy="108" r="2.2" fill="#1A1714"/><text x="24" y="40" font-family="Manrope" font-weight="800" font-size="20" fill="#12392F">КРОМКА</text><text x="24" y="176" font-family="IBM Plex Mono" font-size="11" fill="#56655F">стрижка 83%</text></svg></div>
+          <div class="body"><span class="tag">Барбершоп · квиз</span><h3>«Кромка»</h3>
+            <dl><dt>Задача</dt><dd>Чтобы клиент записывался сам, а мастер заранее знал, что делать.</dd><dt>Решение</dt><dd>Квиз из 5 вопросов: цена и время сразу на экране. Стрижка в зеркале по ходу ответов.</dd></dl>
+            <span class="go">Открыть сайт →</span></div>
+        </a>
+        <a class="case" href="otves.html">
+          <div class="pic" style="background:#121518"><svg viewBox="0 0 320 200" aria-hidden="true"><rect width="320" height="200" fill="#121518"/><g stroke="#E8EAE6" stroke-width="1.6" fill="none"><rect x="90" y="40" width="140" height="84"/><path d="M90 40 L50 22 M230 40 L270 22 M90 124 L50 150 M230 124 L270 150"/><rect x="176" y="56" width="38" height="36"/><path d="M195 56 V92 M176 74 H214"/><path d="M100 124 V72 H122 V124"/></g><path d="M130 122 V110 H170 V122 Z" fill="#D2A54A"/><path d="M90 168 H230" stroke="#8E979D"/><text x="160" y="184" text-anchor="middle" font-family="IBM Plex Mono" font-size="10" fill="#8E979D">6,9 м</text><text x="24" y="30" font-family="Manrope" font-weight="800" font-size="16" fill="#D2A54A" letter-spacing="3">ОТВЕС</text></svg></div>
+          <div class="body"><span class="tag">Ремонт · калькулятор</span><h3>«Отвес»</h3>
+            <dl><dt>Задача</dt><dd>Заявки от людей, которые понимают свой бюджет, а не «сколько стоит ремонт?».</dd><dt>Решение</dt><dd>Смета с разбивкой на работы и материалы, смета по комнатам на планировке, график работ.</dd></dl>
+            <span class="go">Открыть сайт →</span></div>
+        </a>
+        <a class="case" href="unit.html">
+          <div class="pic" style="background:#F5F5F2"><svg viewBox="0 0 320 200" aria-hidden="true"><rect width="320" height="200" fill="#F5F5F2"/><rect x="40" y="30" width="110" height="150" rx="10" fill="#fff" stroke="#15161C" stroke-width="1.6"/><rect x="48" y="38" width="94" height="70" rx="6" fill="#ECECE7"/><path d="M78 72 L95 64 L112 72 V86 L95 94 L78 86Z M78 72 L95 80 L112 72 M95 80 V94" fill="none" stroke="#15161C" stroke-width="1.4"/><text x="48" y="130" font-family="Manrope" font-weight="800" font-size="14" fill="#15161C">1 990 ₽</text><rect x="108" y="119" width="34" height="13" rx="6.5" fill="#0B8F5A"/><path d="M48 168 L70 162 L92 164 L114 152 L140 142" fill="none" stroke="#0B8F5A" stroke-width="2"/><rect x="176" y="40" width="112" height="130" fill="#FFFEF8" stroke="#D6D6D0"/><g font-family="IBM Plex Mono" font-size="8" fill="#15161C"><text x="188" y="60">ЧЕК ТОВАРА</text><text x="188" y="80">цена      1 990</text><text x="188" y="94">комиссия   −478</text><text x="188" y="108">логистика  −79</text><text x="188" y="134" font-weight="700" fill="#0B8F5A">прибыль    515</text></g></svg></div>
+          <div class="body"><span class="tag">Эксперт · калькулятор</span><h3>«Юнит»</h3>
+            <dl><dt>Задача</dt><dd>Наставнику нужны ученики с реальным бюджетом и отстройка от обещаний «×2 оборота».</dd><dt>Решение</dt><dd>Квиз-диагностика с рекомендацией формата и калькулятор юнит-экономики Wildberries.</dd></dl>
+            <span class="go">Открыть сайт →</span></div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="how" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head"><div><p class="label">Как работаю</p><h2>От заявки до первых лидов — неделя</h2></div><p class="lead">Сроки для пакета «Бизнес». Вы тратите около часа: бриф и две проверки.</p></div>
+      <ol class="steps">
+        <li><h3>Бриф</h3><p>Квиз ниже или 15 минут в Telegram: ниша, клиенты, конкуренты.</p><span class="t">день 0</span></li>
+        <li><h3>Смысл и прототип</h3><p>Разбираю конкурентов, предлагаю оффер и структуру. Вы утверждаете.</p><span class="t">день 1–2</span></li>
+        <li><h3>Дизайн и тексты</h3><p>Собираю сайт с квизом или калькулятором под вашу нишу.</p><span class="t">день 3–5</span></li>
+        <li><h3>Запуск</h3><p>Хостинг, SSL, Метрика с целями, заявки в Telegram и таблицу. Тестовая заявка — при вас.</p><span class="t">день 6</span></li>
+        <li><h3>Правки и сдача</h3><p>Два круга правок. Инструкция: где смотреть заявки и статистику.</p><span class="t">день 7</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="block" id="incl" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head"><div><p class="label">В каждом сайте</p><h2>Что вы получаете</h2></div><p class="lead">Сайт — это не картинка, а механизм. Вот что в нём работает с первого дня.</p></div>
+      <div class="incl">
+        <div><b>Заявки в Telegram</b><span>С ответами квиза и суммой — чтобы перезвонить уже с цифрами.</span></div>
+        <div><b>Google Таблица-CRM</b><span>Каждая заявка — строка со статусом: новая, в работе, оплачено.</span></div>
+        <div><b>Квиз или калькулятор</b><span>Показывает клиенту цену до звонка и отсеивает нецелевых.</span></div>
+        <div><b>Яндекс Метрика</b><span>Цели на каждый шаг: видно, где люди уходят и почему.</span></div>
+        <div><b>Защита от спама</b><span>Ловушка для ботов и отсев повторных заявок.</span></div>
+        <div><b>Телефон — в первую очередь</b><span>Сайт проверяю на телефоне: 70–80% заявок приходит с мобильных.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="prices" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head"><div><p class="label">Цены</p><h2>Три пакета — фиксированная цена</h2></div><p class="lead">Предоплата 50%, остаток — после запуска и тестовой заявки. Домен и хостинг оплачиваются отдельно: около 1–2 тыс. ₽ в год за домен и 200–500 ₽ в месяц за хостинг.</p></div>
+      <div class="prices">
+        <article class="pr"><h3>Старт</h3><div class="p num">9 900 ₽ <small>/ 3 дня</small></div><ul><li>Лендинг до 5 блоков</li><li>Форма заявки → Telegram</li><li>Адаптив, SSL, Метрика</li><li>1 круг правок</li></ul><a class="btn btn-line" href="#brief">Выбрать</a></article>
+        <article class="pr hit"><span class="badge">Чаще выбирают</span><h3>Бизнес</h3><div class="p num">24 900 ₽ <small>/ 5–7 дней</small></div><ul><li>До 10 блоков, дизайн под нишу</li><li>Квиз или калькулятор</li><li>Заявки в Telegram и Google Таблицу</li><li>Тексты, цели Метрики, 2 круга правок</li></ul><a class="btn btn-blue" href="#brief">Выбрать</a></article>
+        <article class="pr"><h3>Премиум</h3><div class="p num">44 900 ₽ <small>/ 7–10 дней</small></div><ul><li>Всё из «Бизнеса»</li><li>Telegram-бот приёма заявок и брифа</li><li>Разбор конкурентов и оффера</li><li>30 дней поддержки</li></ul><a class="btn btn-line" href="#brief">Выбрать</a></article>
+      </div>
+      <div class="extras">
+        <div><b>Квиз на ваш сайт</b>7 900 ₽</div>
+        <div><b>Telegram-бот заявок</b>от 14 900 ₽</div>
+        <div><b>Поддержка «Базовая»</b>3 900 ₽/мес</div>
+        <div><b>Поддержка «Активная»</b>8 900 ₽/мес</div>
+      </div>
+      <div class="promo"><b>−30%</b>первым пяти клиентам — за честный отзыв и разрешение показать сайт в портфолио.</div>
+    </div>
+  </section>
+
+  <section class="block" id="brief" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head"><div><p class="label">Расчёт за минуту</p><h2>Рассчитайте свой сайт</h2></div><p class="lead">5 вопросов — и вы увидите подходящий пакет, цену и срок. Отвечу в Telegram в течение пары часов.</p></div>
+      <div class="brief">
+        <div class="bcard">
+          <div class="wire">
+            <svg id="wf" viewBox="0 0 300 220" role="img" aria-label="Каркас вашего сайта собирается по мере ответов">
+              <rect x="10" y="10" width="280" height="200" rx="10" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="4 4" opacity=".35"/>
+              <g id="w1" stroke="currentColor" stroke-width="1.5"><rect class="ln" pathLength="1" x="10" y="10" width="280" height="200" rx="10"/><path class="ln" pathLength="1" d="M10 34 H290"/><circle class="ln" pathLength="1" cx="24" cy="22" r="4"/><path class="ln" pathLength="1" d="M200 22 H270"/></g>
+              <g id="w2" stroke="currentColor" stroke-width="1.5"><path class="ln" pathLength="1" d="M24 54 H170 M24 68 H150"/><path class="ln" pathLength="1" d="M24 84 H130"/><rect class="ln" pathLength="1" x="24" y="96" width="70" height="18" rx="9"/><rect class="fill" x="24" y="96" width="70" height="18" rx="9" fill="var(--blue)"/></g>
+              <g id="w3" stroke="currentColor" stroke-width="1.5"><rect class="ln" pathLength="1" x="186" y="48" width="92" height="94" rx="8"/><rect class="ln" pathLength="1" x="196" y="60" width="72" height="12" rx="4"/><rect class="ln" pathLength="1" x="196" y="78" width="72" height="12" rx="4"/><rect class="ln" pathLength="1" x="196" y="96" width="72" height="12" rx="4"/><rect class="fill" x="196" y="78" width="72" height="12" rx="4" fill="var(--blue-soft)"/></g>
+              <g id="w4" stroke="currentColor" stroke-width="1.5"><rect class="ln" pathLength="1" x="24" y="130" width="72" height="44" rx="6"/><rect class="ln" pathLength="1" x="104" y="130" width="72" height="44" rx="6"/><path class="ln" pathLength="1" d="M32 164 L48 152 L62 158 L88 140"/></g>
+              <g id="w5" stroke="currentColor" stroke-width="1.5"><rect class="ln" pathLength="1" x="186" y="150" width="92" height="46" rx="8"/><path class="ln" pathLength="1" d="M196 164 H268 M196 178 H240"/></g>
+              <g id="w6" class="fill"><circle cx="262" cy="182" r="14" fill="var(--blue)"/><path d="M255 182 l12 -6 -3 13 -3 -4 -4 2z" fill="#fff"/><path d="M276 168 q10 -8 8 -20" stroke="var(--blue)" stroke-width="1.5" fill="none" stroke-dasharray="3 3"/></g>
+            </svg>
+          </div>
+          <div class="wcap" aria-live="polite"><b id="wp">0%</b><span id="wt">Пустая страница. Ответы соберут каркас вашего сайта.</span></div>
+        </div>
+        <div class="bcard" id="qcard"><div id="qbox" aria-live="polite"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="about" style="padding-top:0">
+    <div class="wrap">
+      <div class="about">
+        <div class="ph" aria-hidden="true">Ф</div>
+        <div>
+          <p class="label">Кто делает</p>
+          <h3>Филипп — продавец, который делает сайты</h3>
+          <p>Продавал автомобили и банковские продукты, держал свой барбершоп, три года развивал продажи на маркетплейсах: реклама, карточки, закупки, логистика. Поэтому сайт для меня начинается с вопроса «откуда придёт заявка и почему человек её оставит», а не с картинки.</p>
+          <p>Работаю с ИИ-инструментами — поэтому сроки в днях, а не неделях, и цена ниже студийной. Решения, тексты и проверку делаю сам.</p>
+          <div class="facts"><span>Продажи: авто и банк</span><span>Свой барбершоп</span><span>3 года на маркетплейсах</span><span>Работаю по всей России и СНГ</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="faq" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head"><div><p class="label">Вопросы</p><h2>Частые вопросы</h2></div></div>
+      <div class="faq">
+        <details><summary>Сколько правок входит?</summary><p>В «Старте» — один круг, в «Бизнесе» и «Премиуме» — два. Круг — это список правок, который вы присылаете одним сообщением. Мелочи вроде опечаток правлю без счёта.</p></details>
+        <details><summary>Кто платит за домен и хостинг?</summary><p>Вы — напрямую регистратору и хостингу, чтобы сайт принадлежал вам. Это около 1–2 тыс. ₽ в год за домен и 200–500 ₽ в месяц за хостинг. Помогу выбрать и всё настрою.</p></details>
+        <details><summary>Как платить?</summary><p>50% предоплата, 50% — после запуска и тестовой заявки. Работаю как самозанятый, даю чек.</p></details>
+        <details><summary>А если результат не понравится?</summary><p>До оплаты второй части вы видите рабочий сайт. Если я не выполнил согласованный бриф — доделываю бесплатно или возвращаю предоплату.</p></details>
+        <details><summary>Можно на Tilda или на моём сайте?</summary><p>Квиз или калькулятор встрою в существующий сайт, в том числе на Tilda, — 7 900 ₽. Новые сайты делаю на чистом коде: они быстрее и не требуют подписки на конструктор.</p></details>
+        <details><summary>Сделаете Telegram-бота или интеграцию с CRM?</summary><p>Да: бот приёма заявок и брифа — от 14 900 ₽, передача заявок в amoCRM, Битрикс24 или Google Таблицы — считаю по задаче.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="final" id="contacts">
+    <div class="wrap">
+      <div>
+        <p class="label">Связаться</p>
+        <h2>Обсудим ваш сайт в Telegram</h2>
+        <p class="lead">Напишите нишу и ссылку на текущий сайт, если он есть. Отвечу, что можно улучшить, даже если не будете заказывать.</p>
+        <a class="btn btn-blue" href="https://t.me/phtuta" target="_blank" rel="noopener"><svg class="tg-ico" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M21.5 4.1 2.9 11.3c-1.3.5-1.3 1.2-.2 1.5l4.8 1.5 1.8 5.6c.2.6.1.9.8.9.5 0 .7-.2 1-.5l2.3-2.2 4.8 3.5c.9.5 1.5.2 1.7-.8l3.1-14.8c.3-1.3-.5-1.9-1.5-1.4ZM8.4 14l9.3-5.9c.5-.3.8-.1.5.2l-7.8 7.1-.3 3.2L8.4 14Z"/></svg>Написать @phtuta</a>
+      </div>
+      <div class="contacts">
+        <div><span>Telegram</span><a href="https://t.me/phtuta" target="_blank" rel="noopener">@phtuta</a></div>
+        <div><span>Ответ</span>В течение 2 часов, Пн–Сб 9:00–21:00 МСК</div>
+        <div><span>Работаю</span>Онлайн, по всей России и СНГ</div>
+        <div><span>Оплата</span>Самозанятый, чек, 50/50</div>
+      </div>
+    </div>
+  </section>
 </main>
+<footer><div class="wrap"><span>© Филипп, 2026 · сайты с заявками в Telegram</span><span>Кейсы на сайте — демо-проекты с вымышленными брендами.</span></div></footer>
+<div class="mcta"><a class="btn btn-blue" href="#brief">Рассчитать сайт</a><a class="btn btn-line" href="https://t.me/phtuta" target="_blank" rel="noopener" aria-label="Написать в Telegram">TG</a></div>
+
+<script>
+const CONFIG = { endpoint: "https://script.google.com/macros/s/AKfycbxP5LGhMbBKNPLQTC5s5MjIVKamwDcEPC1tWnSlZoY8JLPsVUVNF2FJQPwkrCswuGdt/exec", site: "Портфолио Филиппа" };
+const METRIKA_ID = 113125555;
+const goalsSent = {};
+function goal(name){ if (goalsSent[name]) return; goalsSent[name]=1; try{ if (window.ym && METRIKA_ID) ym(METRIKA_ID,"reachGoal",name); }catch(_){} }
+const $ = id => document.getElementById(id);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+/* ===== Telegram-лента в телефоне ===== */
+const LEADS = [
+  {src:"kromka.html · барбершоп", t:"👤 Андрей · Telegram\n✂️ Фейд · топ-барбер · 60 мин\n💰 1 790 ₽ (первый визит −15%)\n🗓 Завтра, вечер"},
+  {src:"otves.html · ремонт", t:"👤 Ольга · WhatsApp\n🏠 Вторичка, 62 м² · капитальный\n💰 1,55 – 2,15 млн ₽ · 3,5–4,5 мес.\n📐 Кухня, санузел, спальня"},
+  {src:"unit.html · наставник", t:"👤 Марина · Telegram\n📦 Выбрала товар, ещё не продаёт\n💰 Бюджет 300 тыс. – 1 млн ₽\n✅ Запуск за 8 недель — 69 000 ₽"},
+  {src:"kromka.html · барбершоп", t:"👤 Игорь · звонок\n✂️ Стрижка + борода · 90 мин\n💰 2 500 ₽\n🗓 На выходных, утро"},
+  {src:"otves.html · ремонт", t:"👤 Сергей · Telegram\n🏠 Новостройка white box, 41 м²\n💰 0,9 – 1,3 млн ₽ · косметический"}
+];
+(function feed(){
+  const f = $("feed"); let i = 0;
+  const now = () => { const d = new Date(); return d.getHours().toString().padStart(2,"0")+":"+d.getMinutes().toString().padStart(2,"0"); };
+  function add(){
+    const L = LEADS[i % LEADS.length]; i++;
+    const m = document.createElement("div"); m.className = "msg";
+    m.innerHTML = `<span class="src">🔔 Новая заявка · ${esc(L.src)}</span>${esc(L.t)}<time>${now()}</time>`;
+    f.appendChild(m);
+    while (f.children.length > 4) f.removeChild(f.firstChild);
+  }
+  add(); add(); add();
+  if (!reduce) setInterval(add, 3200);
+})();
+
+/* ===== Бриф-квиз ===== */
+const STEPS = [
+  {key:"biz", q:"Ваш бизнес", opts:[{v:"services",t:"Услуги"},{v:"beauty",t:"Салон, барбершоп"},{v:"repair",t:"Ремонт, стройка"},{v:"expert",t:"Эксперт, обучение"},{v:"goods",t:"Товары"},{v:"other",t:"Другое"}]},
+  {key:"need", q:"Что нужно?", opts:[{v:"landing",t:"Лендинг"},{v:"quiz",t:"Лендинг + квиз"},{v:"calc",t:"Калькулятор цены"},{v:"bot",t:"Telegram-бот"},{v:"addquiz",t:"Квиз на мой сайт"},{v:"unsure",t:"Не знаю, посоветуйте"}]},
+  {key:"site", q:"Сайт сейчас есть?", opts:[{v:"no",t:"Нет"},{v:"old",t:"Есть, но не приносит заявок"},{v:"tilda",t:"Есть на Tilda / конструкторе"},{v:"ok",t:"Есть, нужен ещё один"}]},
+  {key:"when", q:"Когда нужен?", opts:[{v:"asap",t:"Как можно скорее"},{v:"2w",t:"В течение 2 недель"},{v:"month",t:"В течение месяца"},{v:"later",t:"Пока присматриваюсь"}]},
+  {key:"budget", q:"Бюджет", opts:[{v:"lt10",t:"До 10 тыс. ₽"},{v:"10-25",t:"10–25 тыс. ₽"},{v:"25-50",t:"25–50 тыс. ₽"},{v:"gt50",t:"Больше 50 тыс. ₽"}]}
+];
+const LBL = {}; STEPS.forEach(s=>s.opts.forEach(o=>LBL[s.key+":"+o.v]=o.t));
+const state = {step:0, a:{}};
+const box = $("qbox");
+function rec(){
+  const a = state.a; let r;
+  if (a.need==="addquiz") r = {n:"Квиз на ваш сайт", p:"7 900 ₽", d:"3–4 дня", pts:["Квиз под вашу нишу с ценой на экране","Встраиваю в текущий сайт, в том числе на Tilda","Заявки в Telegram и Google Таблицу"]};
+  else if (a.need==="bot") r = {n:"Telegram-бот заявок", p:"от 14 900 ₽", d:"5–7 дней", pts:["Бот принимает заявку и задаёт вопросы брифа","Заявки — в таблицу со статусами","Уведомления вам и менеджеру"]};
+  else if (a.budget==="lt10" || (a.need==="landing" && a.budget!=="gt50" && a.budget!=="25-50")) r = {n:"Пакет «Старт»", p:"9 900 ₽", d:"3 дня", pts:["Лендинг до 5 блоков под вашу нишу","Форма заявки → Telegram","Метрика, SSL, адаптив"]};
+  else if (a.budget==="gt50" || a.need==="calc" && a.budget==="25-50") r = {n:"Пакет «Премиум»", p:"44 900 ₽", d:"7–10 дней", pts:["Калькулятор или квиз под нишу","Telegram-бот приёма заявок","Разбор конкурентов и 30 дней поддержки"]};
+  else r = {n:"Пакет «Бизнес»", p:"24 900 ₽", d:"5–7 дней", pts:["Лендинг до 10 блоков с квизом или калькулятором","Заявки в Telegram и Google Таблицу","Тексты под ключ, цели Метрики"]};
+  if (a.site==="old") r.pts.push("Разберу, почему текущий сайт не приносит заявок — бесплатно");
+  if (a.biz==="repair") r.pts.push("Пример из вашей ниши: калькулятор сметы, как в кейсе «Отвес»");
+  if (a.biz==="beauty") r.pts.push("Пример из вашей ниши: квиз записи, как в кейсе «Кромка»");
+  if (a.biz==="expert") r.pts.push("Пример из вашей ниши: диагностика и калькулятор, как в кейсе «Юнит»");
+  r.note = a.when==="asap" ? "Срочный старт возможен: напишите сразу в Telegram @phtuta." : "Первым пяти клиентам — скидка 30% за отзыв и кейс.";
+  return r;
+}
+const WTXT = ["Пустая страница. Ответы соберут каркас вашего сайта.","Шапка и контакты.","Оффер и кнопка.","Квиз или калькулятор.","Кейсы и цифры.","Форма заявки. Осталось оставить контакт.","Заявка улетела в Telegram."];
+function wire(stage){
+  ["w1","w2","w3","w4","w5"].forEach((id,k)=>$(id).classList.toggle("drawn", stage > k));
+  $("w6").classList.toggle("drawn", stage >= 6);
+  $("wp").textContent = Math.round(stage/6*100) + "%"; $("wt").textContent = WTXT[stage];
+  box.classList.remove("swap"); void box.offsetWidth; if (!reduce) box.classList.add("swap");
+}
+function render(){ const i = state.step; wire(Math.min(i,5)); if (i < STEPS.length) return step(i); form(); }
+function step(i){
+  const st = STEPS[i];
+  box.innerHTML = `<h3>${st.q}</h3><div class="opts">${st.opts.map(o=>`<button type="button" class="opt" data-v="${o.v}" aria-pressed="${state.a[st.key]===o.v}">${esc(o.t)}</button>`).join("")}</div>
+    <div class="qnav">${i>0?`<button type="button" class="link" id="back">← Назад</button>`:"<span></span>"}<span>${i+1} / ${STEPS.length}</span></div>`;
+  box.querySelectorAll(".opt").forEach(b=>b.addEventListener("click",()=>{ if (i===0) goal("quiz_start"); state.a[st.key]=b.dataset.v; state.step++; render(); }));
+  const bk = $("back"); if (bk) bk.onclick = ()=>{ state.step--; render(); };
+}
+function form(){
+  goal("quiz_result");
+  const r = rec();
+  box.innerHTML = `<div class="rec"><div class="n">${esc(r.n)}</div><div class="p">${esc(r.p)} · ${esc(r.d)}</div><ul>${r.pts.map(p=>`<li>${esc(p)}</li>`).join("")}</ul><p>${esc(r.note)}</p></div>
+    <form id="lead" novalidate>
+      <div class="row2"><div class="field"><label for="f-name">Имя</label><input id="f-name" autocomplete="given-name" placeholder="Как к вам обращаться"></div>
+      <div class="field"><label for="f-tg">Telegram или телефон</label><input id="f-tg" autocomplete="tel" placeholder="@username или +7…"></div></div>
+      <div class="field"><label for="f-site">Ссылка на сайт или соцсети (если есть)</label><input id="f-site" inputmode="url" placeholder="необязательно"></div>
+      <input id="f-hp" name="kr_hp_7x" tabindex="-1" autocomplete="new-password" data-lpignore="true" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
+      <div class="err" id="f-err" role="alert"></div>
+      <button class="btn btn-blue" style="width:100%" type="submit" id="f-send">Отправить и получить расчёт</button>
+      <p class="consent">Нажимая кнопку, вы соглашаетесь на обработку персональных данных.</p>
+    </form><div class="qnav"><button type="button" class="link" id="back">← Изменить ответы</button></div>`;
+  $("back").onclick = ()=>{ state.step=0; render(); };
+  $("lead").addEventListener("submit", submit);
+}
+async function submit(e){
+  e.preventDefault();
+  const name = $("f-name"), tg = $("f-tg"), site = $("f-site"), err = $("f-err"); let msg = "";
+  name.setAttribute("aria-invalid","false"); tg.setAttribute("aria-invalid","false");
+  const contact = tg.value.trim();
+  const isTg = /^@?[a-zA-Z0-9_]{5,32}$/.test(contact), digits = contact.replace(/\D/g,"");
+  if (name.value.trim().length < 2){ msg = "Напишите имя."; name.setAttribute("aria-invalid","true"); }
+  else if (!isTg && digits.length < 10){ msg = "Укажите Telegram (@username) или телефон — чтобы я смог ответить."; tg.setAttribute("aria-invalid","true"); }
+  err.textContent = msg; if (msg) return;
+  const r = rec(), a = state.a;
+  const text = ["🔔 Новая заявка — портфолио", "", `👤 ${name.value.trim()}`, `📱 ${contact}`, site.value.trim()?`🌐 ${site.value.trim()}`:"",
+    "", `🏷 Бизнес: ${LBL["biz:"+a.biz]}`, `🧩 Нужно: ${LBL["need:"+a.need]}`, `🖥 Сайт сейчас: ${LBL["site:"+a.site]}`, `⏱ Срок: ${LBL["when:"+a.when]}`, `💰 Бюджет: ${LBL["budget:"+a.budget]}`,
+    "", `✅ Рекомендация: ${r.n} — ${r.p}`, "", "Источник: бриф на сайте-портфолио"].filter((l,k,arr)=>l!=="" || arr[k-1]!=="").join("\n");
+  const btn = $("f-send"); btn.disabled = true; btn.textContent = "Отправляем…";
+  const phone = isTg ? "" : contact;
+  if (CONFIG.endpoint){
+    try{ await fetch(CONFIG.endpoint,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain;charset=utf-8"},
+      body:JSON.stringify({site:CONFIG.site, hp:$("f-hp").value, text, lead:{name:name.value.trim(), phone: phone || contact, contact: isTg ? "Telegram" : "Телефон"}, service:r.n, amount:parseInt(r.p.replace(/\D/g,""),10)||"", details:`${LBL["biz:"+a.biz]} · ${LBL["need:"+a.need]} · ${LBL["budget:"+a.budget]}${site.value.trim()?" · "+site.value.trim():""}`, page:location.href})}); }
+    catch(_){ btn.disabled=false; btn.textContent="Отправить и получить расчёт"; err.textContent="Не отправилось — напишите мне напрямую: @phtuta"; return; }
+  }
+  goal("quiz_lead");
+  box.innerHTML = `<div class="done"><h3>Заявка у меня</h3><p>${esc(name.value.trim())}, напишу в течение пары часов с расчётом и вопросами по брифу. Если срочно — <a href="https://t.me/phtuta" target="_blank" rel="noopener">@phtuta</a>.</p>
+    ${CONFIG.endpoint?"":`<p class="consent">Демо-режим. Так заявка приходит в Telegram:</p><div class="tg-demo">${esc(text)}</div>`}
+    <div class="qnav"><button type="button" class="link" id="again">Пройти ещё раз</button></div></div>`;
+  wire(6);
+  $("again").onclick = ()=>{ state.step=0; state.a={}; render(); };
+}
+
+/* ===== Анимации при прокрутке (IntersectionObserver) — работают на телефонах ===== */
+(function(){
+  const root = document.documentElement; root.classList.add("js");
+  const els = document.querySelectorAll(".sec-head,.case,.steps li,.incl,.pr,.bcard,.about,.faq details,.final h2");
+  if ("IntersectionObserver" in window){
+    const io = new IntersectionObserver(es=>es.forEach(e=>{ if (e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); } }), {rootMargin:"0px 0px -8% 0px", threshold:.08});
+    els.forEach(el=>io.observe(el));
+  } else els.forEach(el=>el.classList.add("in"));
+  let t = false;
+  function up(){ t = false; const max = Math.max(1, root.scrollHeight - innerHeight); root.style.setProperty("--sp", Math.min(1, scrollY/max).toFixed(4)); }
+  addEventListener("scroll", ()=>{ if (!t){ t = true; requestAnimationFrame(up); } }, {passive:true}); up();
+})();
+render();
+</script>
+
 </body>
 </html>
