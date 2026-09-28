@@ -294,26 +294,27 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 32px;justify-content:space-bet
   .calc{animation:wipeIn 1s .15s cubic-bezier(.6,0,.25,1) both}
   @keyframes wipeIn{from{clip-path:inset(0 0 0 100%)}to{clip-path:inset(0 0 0 0)}}
 
-  @supports (animation-timeline: view()){
-    .progress-line{display:block;animation:grow linear both;animation-timeline:scroll(root)}
-    @keyframes grow{to{transform:scaleX(1)}}
-    /* секции: чёткое «вскрытие» сверху вниз, без размытия */
-    .sec-head{animation:reveal linear both;animation-timeline:view();animation-range:entry 5% cover 25%}
-    @keyframes reveal{from{clip-path:inset(0 0 100% 0);transform:translateY(30px)}to{clip-path:inset(0 0 0 0);transform:none}}
-    .sec-head h2::after{animation:line linear both;animation-timeline:view();animation-range:entry 20% cover 35%}
-    @keyframes line{from{transform:scaleX(0)}to{transform:scaleX(1)}}
-    .why article,.price tbody tr,.rules > div,.split > div,.plan-card,.plan-side,.gantt,.chat,.ph-box{animation:slidein linear both;animation-timeline:view();animation-range:entry 0% cover 22%}
-    @keyframes slidein{from{clip-path:inset(0 100% 0 0);transform:translateX(-24px)}to{clip-path:inset(0 0 0 0);transform:none}}
-    .bar{animation:line linear both;animation-timeline:view();animation-range:entry 10% cover 40%}
-    /* роботы едут по мере прокрутки */
-    .band{view-timeline-name:--band}
-    .tile-robot{animation:drive linear both;animation-timeline:--band;animation-range:entry 0% exit 20%}
-    @keyframes drive{from{transform:translateX(0)}to{transform:translateX(var(--dist))}}
-    .tiles{animation:lay linear both;animation-timeline:--band;animation-range:entry 0% exit 20%}
-    @keyframes lay{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
-    .paint-robot{animation:drive linear both;animation-timeline:--band;animation-range:entry 0% exit 20%}
-    .paint{animation:lay linear both;animation-timeline:--band;animation-range:entry 0% exit 20%}
-  }
+  /* Анимации при прокрутке — на JS, работают на всех телефонах */
+  html.js .sec-head:not(.in),html.js .why article:not(.in),html.js .price tbody tr:not(.in),html.js .rules > div:not(.in),html.js .split > div:not(.in),
+  html.js .plan-card:not(.in),html.js .plan-side:not(.in),html.js .gantt:not(.in),html.js .chat:not(.in),html.js .ph-box:not(.in){opacity:0}
+  html.js .sec-head.in{animation:reveal .9s cubic-bezier(.6,0,.25,1) both}
+  @keyframes reveal{from{opacity:1;clip-path:inset(0 0 100% 0);transform:translateY(30px)}to{opacity:1;clip-path:inset(-20px -20px -20px -20px);transform:none}}
+  html.js .sec-head h2::after{transform:scaleX(0);transition:transform .8s cubic-bezier(.6,0,.25,1) .5s}
+  html.js .sec-head.in h2::after{transform:scaleX(1)}
+  html.js .why article.in,html.js .price tbody tr.in,html.js .rules > div.in,html.js .split > div.in,html.js .plan-card.in,html.js .plan-side.in,html.js .gantt.in,html.js .chat.in,html.js .ph-box.in{animation:slidein .8s cubic-bezier(.6,0,.25,1) both}
+  html.js .why article.in:nth-child(2),html.js .split > div.in:nth-child(2),html.js .rules > div.in:nth-child(2),html.js .plan-side.in{animation-delay:.12s}
+  html.js .why article.in:nth-child(3){animation-delay:.24s}
+  @keyframes slidein{from{opacity:1;clip-path:inset(0 100% 0 0);transform:translateX(-24px)}to{opacity:1;clip-path:inset(-20px -20px -20px -20px);transform:none}}
+  html.js .bar{transform:scaleX(0);transition:transform .9s cubic-bezier(.6,0,.25,1)}
+  html.js .gantt.in .bar{transform:scaleX(1)}
+  html.js .gantt.in .track:nth-of-type(2) .bar{transition-delay:.1s}
+  html.js .gantt .bar{transition-delay:calc(var(--i,0) * .15s + .3s)}
+}
+/* роботы едут по мере прокрутки (управляет JS через --p) */
+.tile-robot,.paint-robot{transform:translateX(calc(var(--p,1) * var(--dist)))}
+.tiles,.paint{clip-path:inset(0 calc((1 - var(--p,1)) * 100%) 0 0)}
+.progress-line{display:block;transform:scaleX(var(--sp,0))}
+html,body{overflow-x:clip}
 }
 </style>
 
@@ -410,7 +411,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 32px;justify-content:space-bet
   </section>
 
   <!-- робот кладёт плитку -->
-  <div class="band" aria-hidden="true">
+  <div class="band" data-p aria-hidden="true">
     <svg viewBox="0 0 1000 110" preserveAspectRatio="xMidYMid meet">
       <line x1="0" y1="96" x2="1000" y2="96" stroke="currentColor" stroke-width="1" opacity=".4"/>
       <g class="tiles">
@@ -475,7 +476,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 32px;justify-content:space-bet
   </section>
 
   <!-- робот красит стену -->
-  <div class="band" aria-hidden="true">
+  <div class="band" data-p aria-hidden="true">
     <svg viewBox="0 0 1000 110" preserveAspectRatio="xMidYMid meet">
       <rect x="30" y="14" width="940" height="82" fill="none" stroke="currentColor" stroke-width="1" opacity=".4"/>
       <rect class="paint" x="30" y="14" width="940" height="82" fill="#D2A54A" opacity=".22"/>
@@ -525,12 +526,12 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 32px;justify-content:space-bet
       </div>
       <div class="gantt">
         <div class="gantt-grid">
-          <div class="nm">Замер и смета<small>3 дня · договор</small></div><div class="track"><span class="bar" style="left:0;width:calc(100%/17*.6)"></span></div>
-          <div class="nm">Демонтаж и черновые<small>стяжка, штукатурка</small></div><div class="track"><span class="bar pay" style="left:calc(100%/17*1);width:calc(100%/17*4)"></span></div>
-          <div class="nm">Инженерия<small>электрика, сантехника</small></div><div class="track"><span class="bar pay" style="left:calc(100%/17*5);width:calc(100%/17*3)"></span></div>
-          <div class="nm">Чистовая отделка<small>плитка, покраска, полы</small></div><div class="track"><span class="bar pay" style="left:calc(100%/17*8);width:calc(100%/17*6)"></span></div>
-          <div class="nm">Двери, свет, сантехприборы<small>установка</small></div><div class="track"><span class="bar pay" style="left:calc(100%/17*14);width:calc(100%/17*1.6)"></span></div>
-          <div class="nm">Сдача<small>чек-лист 60 пунктов</small></div><div class="track"><span class="bar pay" style="left:calc(100%/17*15.6);width:calc(100%/17*.8)"></span></div>
+          <div class="nm">Замер и смета<small>3 дня · договор</small></div><div class="track"><span style="--i:1" class="bar" style="left:0;width:calc(100%/17*.6)"></span></div>
+          <div class="nm">Демонтаж и черновые<small>стяжка, штукатурка</small></div><div class="track"><span style="--i:2" class="bar pay" style="left:calc(100%/17*1);width:calc(100%/17*4)"></span></div>
+          <div class="nm">Инженерия<small>электрика, сантехника</small></div><div class="track"><span style="--i:3" class="bar pay" style="left:calc(100%/17*5);width:calc(100%/17*3)"></span></div>
+          <div class="nm">Чистовая отделка<small>плитка, покраска, полы</small></div><div class="track"><span style="--i:4" class="bar pay" style="left:calc(100%/17*8);width:calc(100%/17*6)"></span></div>
+          <div class="nm">Двери, свет, сантехприборы<small>установка</small></div><div class="track"><span style="--i:5" class="bar pay" style="left:calc(100%/17*14);width:calc(100%/17*1.6)"></span></div>
+          <div class="nm">Сдача<small>чек-лист 60 пунктов</small></div><div class="track"><span style="--i:6" class="bar pay" style="left:calc(100%/17*15.6);width:calc(100%/17*.8)"></span></div>
           <div class="weeks"><span style="left:0">нед. 0</span><span style="left:calc(100%/17*4)">4</span><span style="left:calc(100%/17*8)">8</span><span style="left:calc(100%/17*12)">12</span><span style="left:calc(100%/17*16)">16</span></div>
         </div>
         <div class="gantt-foot"><span><i></i>оплата этапа после акта приёмки</span><span>Проверка ровности: отклонение до 2 мм на 2 м</span></div>
@@ -918,6 +919,28 @@ renderStep = function(i){
   return _renderStep(i);
 };
 document.addEventListener("click", e=>{ if (e.target.id==="back") state._manual = true; }, true);
+
+/* ===== Анимации при прокрутке (IntersectionObserver + scroll) — работают во всех браузерах ===== */
+(function(){
+  const root = document.documentElement;
+  root.classList.add("js");
+  const els = document.querySelectorAll(".sec-head,.why article,.price tbody tr,.rules > div,.split > div,.plan-card,.plan-side,.gantt,.chat,.ph-box");
+  if ("IntersectionObserver" in window){
+    const io = new IntersectionObserver(es=>es.forEach(e=>{ if (e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); } }), {rootMargin:"0px 0px -10% 0px", threshold:.1});
+    els.forEach(el=>io.observe(el));
+  } else els.forEach(el=>el.classList.add("in"));
+  const bands = [...document.querySelectorAll("[data-p]")];
+  let ticking = false;
+  function update(){
+    ticking = false;
+    const vh = innerHeight, max = Math.max(1, root.scrollHeight - vh);
+    root.style.setProperty("--sp", Math.min(1, scrollY/max).toFixed(4));
+    bands.forEach(b=>{ const r = b.getBoundingClientRect(); const p = Math.max(0, Math.min(1, (vh - r.top)/(vh*.8))); b.style.setProperty("--p", p.toFixed(4)); });
+  }
+  addEventListener("scroll", ()=>{ if (!ticking){ ticking = true; requestAnimationFrame(update); } }, {passive:true});
+  addEventListener("resize", update);
+  update();
+})();
 
 drawPlan();
 render();
