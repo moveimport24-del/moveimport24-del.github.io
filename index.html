@@ -67,8 +67,22 @@ h2{font-size:clamp(32px,4.6vw,54px)}
 .btn-blue:hover{box-shadow:0 10px 24px -10px var(--blue)}
 .btn-line{background:transparent;color:var(--ink);border:1.5px solid var(--line)}
 .btn-line:hover{border-color:var(--ink)}
+.btn-ghost{background:transparent;color:inherit;border:1.5px solid color-mix(in srgb,currentColor 35%,transparent)}
+.btn-ghost:hover{border-color:currentColor}
 .tg-ico{width:18px;height:18px}
-@media (max-width:900px){.nav{display:none}}
+.nav a{position:relative;padding-block:4px}
+.nav a.on{color:var(--ink)}
+.nav a.on::after{content:"";position:absolute;left:0;right:0;bottom:-4px;height:2px;border-radius:2px;background:var(--blue)}
+.mnav{display:none}
+@media (max-width:1060px){.nav{gap:16px;font-size:13.5px}}
+@media (max-width:900px){.nav{display:none}
+  .mnav{display:flex;gap:6px;overflow-x:auto;padding:0 16px 10px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .mnav::-webkit-scrollbar{display:none}
+  .mnav a{flex:none;text-decoration:none;font:600 13px var(--body);color:var(--muted);background:var(--card);border:1px solid var(--line);border-radius:999px;padding:7px 12px}
+  .mnav a.on{color:#fff;background:var(--ink);border-color:var(--ink)}
+}
+section[id]{scroll-margin-top:90px}
+@media (max-width:900px){section[id]{scroll-margin-top:120px}}
 .progress-line{position:absolute;left:0;right:0;bottom:-1px;height:2px;background:var(--blue);transform-origin:left;transform:scaleX(var(--sp,0))}
 
 /* hero */
@@ -250,9 +264,10 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 32px;justify-content:space-bet
 <header class="top">
   <div class="wrap">
     <a class="logo" href="#top"><span class="av" aria-hidden="true">Ф</span><span><b>Филипп</b><span>сайты с заявками в Telegram</span></span></a>
-    <nav class="nav" aria-label="Разделы"><a href="#cases">Кейсы</a><a href="#how">Как работаю</a><a href="#prices">Цены</a><a href="#brief">Рассчитать</a><a href="#faq">Вопросы</a></nav>
+    <nav class="nav" aria-label="Разделы"><a href="#cases">Кейсы</a><a href="#how">Как работаю</a><a href="#prices">Цены</a><a href="#brief">Расчёт</a><a href="#about">Обо мне</a><a href="#faq">Вопросы</a><a href="#contacts">Контакты</a></nav>
     <a class="btn btn-blue" href="#brief">Рассчитать стоимость</a>
   </div>
+  <nav class="mnav" aria-label="Разделы сайта"><a href="#cases">Кейсы</a><a href="#how">Как работаю</a><a href="#incl">Что входит</a><a href="#prices">Цены</a><a href="#brief">Расчёт</a><a href="#about">Обо мне</a><a href="#faq">Вопросы</a><a href="#contacts">Контакты</a></nav>
   <i class="progress-line" aria-hidden="true"></i>
 </header>
 
@@ -286,7 +301,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 32px;justify-content:space-bet
 
   <section class="block" id="cases" style="padding-top:24px">
     <div class="wrap">
-      <div class="sec-head"><div><p class="label">Кейсы</p><h2>Три сайта — три ниши</h2></div><p class="lead">Демо-проекты под реальные ниши: каждый рабочий, с квизом или калькулятором и отправкой заявок в Telegram. Откройте и пройдите — заявка придёт ко мне, как пришла бы вам.</p></div>
+      <div class="sec-head"><div><p class="label">Кейсы</p><h2>Три сайта — три ниши</h2></div><p class="lead">Тестовые проекты в трёх нишах — полностью рабочие: квизы, калькуляторы, заявки в Telegram. Пройдите любой — заявка придёт мне так же, как будет приходить вам.</p></div>
       <div class="cases">
         <a class="case" href="kromka.html">
           <div class="pic" style="background:#E6EDE9"><svg viewBox="0 0 320 200" aria-hidden="true"><rect width="320" height="200" fill="#E6EDE9"/><circle cx="160" cy="100" r="62" fill="#D9E3DE" stroke="#9A6B17" stroke-width="7"/><ellipse cx="160" cy="108" rx="27" ry="33" fill="#E3B48C"/><path d="M131 96 Q128 68 150 62 Q168 57 184 64 Q194 72 189 96 Q186 82 176 78 Q160 82 146 79 Q136 84 131 96Z" fill="#2B211C"/><path d="M137 146 Q160 130 183 146 L190 162 H130Z" fill="#12392F"/><circle cx="150" cy="108" r="2.2" fill="#1A1714"/><circle cx="170" cy="108" r="2.2" fill="#1A1714"/><text x="24" y="40" font-family="Manrope" font-weight="800" font-size="20" fill="#12392F">КРОМКА</text><text x="24" y="176" font-family="IBM Plex Mono" font-size="11" fill="#56655F">стрижка 83%</text></svg></div>
@@ -383,11 +398,12 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 32px;justify-content:space-bet
       <div class="about">
         <div class="ph" aria-hidden="true">Ф</div>
         <div>
-          <p class="label">Кто делает</p>
-          <h3>Филипп — продавец, который делает сайты</h3>
-          <p>Продавал автомобили и банковские продукты, держал свой барбершоп, три года развивал продажи на маркетплейсах: реклама, карточки, закупки, логистика. Поэтому сайт для меня начинается с вопроса «откуда придёт заявка и почему человек её оставит», а не с картинки.</p>
-          <p>Работаю с ИИ-инструментами — поэтому сроки в днях, а не неделях, и цена ниже студийной. Решения, тексты и проверку делаю сам.</p>
-          <div class="facts"><span>Продажи: авто и банк</span><span>Свой барбершоп</span><span>3 года на маркетплейсах</span><span>Работаю по всей России и СНГ</span></div>
+          <p class="label">Обо мне</p>
+          <h3>Я Филипп. Делаю сайты, которые продают</h3>
+          <p>Сайты делаю больше трёх лет. А до этого и параллельно — всю жизнь продаю: автомобили, банковские продукты, недвижимость. Был свой барбершоп, три года развивал продажи на маркетплейсах — реклама, карточки, закупки, логистика.</p>
+          <p>Поэтому смотрю на сайт глазами продавца: откуда придёт человек, что ему важно увидеть и почему он оставит заявку именно вам. Красота — следом.</p>
+          <p>Ещё я титулованный спортсмен в триатлоне. Из спорта в работу перенёс простую вещь: план, сроки и доведение до финиша. Работаю с ИИ-инструментами — поэтому сроки в днях, а не неделях, и цена ниже студийной. Решения, тексты и проверку делаю сам.</p>
+          <div class="facts"><span>Сайты — больше 3 лет</span><span>Продажи: авто, банк, недвижимость</span><span>Свой барбершоп</span><span>3 года на маркетплейсах</span><span>Триатлон</span></div>
         </div>
       </div>
     </div>
@@ -411,12 +427,14 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 32px;justify-content:space-bet
     <div class="wrap">
       <div>
         <p class="label">Связаться</p>
-        <h2>Обсудим ваш сайт в Telegram</h2>
-        <p class="lead">Напишите нишу и ссылку на текущий сайт, если он есть. Отвечу, что можно улучшить, даже если не будете заказывать.</p>
-        <a class="btn btn-blue" href="https://t.me/phtuta" target="_blank" rel="noopener"><svg class="tg-ico" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M21.5 4.1 2.9 11.3c-1.3.5-1.3 1.2-.2 1.5l4.8 1.5 1.8 5.6c.2.6.1.9.8.9.5 0 .7-.2 1-.5l2.3-2.2 4.8 3.5c.9.5 1.5.2 1.7-.8l3.1-14.8c.3-1.3-.5-1.9-1.5-1.4ZM8.4 14l9.3-5.9c.5-.3.8-.1.5.2l-7.8 7.1-.3 3.2L8.4 14Z"/></svg>Написать @phtuta</a>
+        <h2>Обсудим ваш сайт</h2>
+        <p class="lead">Напишите нишу и ссылку на текущий сайт, если он есть — в любой удобный мессенджер. Отвечу, что можно улучшить, даже если не будете заказывать.</p>
+        <div style="display:flex;gap:10px;flex-wrap:wrap"><a class="btn btn-blue" href="https://t.me/phtuta" target="_blank" rel="noopener"><svg class="tg-ico" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M21.5 4.1 2.9 11.3c-1.3.5-1.3 1.2-.2 1.5l4.8 1.5 1.8 5.6c.2.6.1.9.8.9.5 0 .7-.2 1-.5l2.3-2.2 4.8 3.5c.9.5 1.5.2 1.7-.8l3.1-14.8c.3-1.3-.5-1.9-1.5-1.4ZM8.4 14l9.3-5.9c.5-.3.8-.1.5.2l-7.8 7.1-.3 3.2L8.4 14Z"/></svg>Telegram</a><a class="btn btn-ghost" href="https://wa.me/79811726253" target="_blank" rel="noopener">WhatsApp</a><a class="btn btn-ghost" href="tel:+79219267605">Max</a></div>
       </div>
       <div class="contacts">
         <div><span>Telegram</span><a href="https://t.me/phtuta" target="_blank" rel="noopener">@phtuta</a></div>
+        <div><span>WhatsApp</span><a href="https://wa.me/79811726253" target="_blank" rel="noopener">+7 981 172-62-53</a></div>
+        <div><span>Max</span><a href="tel:+79219267605">+7 921 926-76-05</a></div>
         <div><span>Ответ</span>В течение 2 часов, Пн–Сб 9:00–21:00 МСК</div>
         <div><span>Работаю</span>Онлайн, по всей России и СНГ</div>
         <div><span>Оплата</span>Самозанятый, чек, 50/50</div>
@@ -424,7 +442,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 32px;justify-content:space-bet
     </div>
   </section>
 </main>
-<footer><div class="wrap"><span>© Филипп, 2026 · сайты с заявками в Telegram</span><span>Кейсы на сайте — демо-проекты с вымышленными брендами.</span></div></footer>
+<footer><div class="wrap"><span>© Филипп, 2026 · сайты с заявками в Telegram</span><span>Telegram @phtuta · WhatsApp +7 981 172-62-53 · Max +7 921 926-76-05</span></div></footer>
 <div class="mcta"><a class="btn btn-blue" href="#brief">Рассчитать сайт</a><a class="btn btn-line" href="https://t.me/phtuta" target="_blank" rel="noopener" aria-label="Написать в Telegram">TG</a></div>
 
 <script>
@@ -553,6 +571,17 @@ async function submit(e){
   let t = false;
   function up(){ t = false; const max = Math.max(1, root.scrollHeight - innerHeight); root.style.setProperty("--sp", Math.min(1, scrollY/max).toFixed(4)); }
   addEventListener("scroll", ()=>{ if (!t){ t = true; requestAnimationFrame(up); } }, {passive:true}); up();
+  /* подсветка текущего раздела в навигации */
+  const links = [...document.querySelectorAll(".nav a,.mnav a")];
+  const secs = [...new Set(links.map(a=>a.getAttribute("href")))].map(h=>document.querySelector(h)).filter(Boolean);
+  if ("IntersectionObserver" in window){
+    const so = new IntersectionObserver(es=>es.forEach(e=>{ if (e.isIntersecting){
+      const id = "#"+e.target.id;
+      links.forEach(a=>a.classList.toggle("on", a.getAttribute("href")===id));
+      const m = document.querySelector('.mnav a[href="'+id+'"]'); if (m && m.parentElement.scrollWidth > m.parentElement.clientWidth) m.parentElement.scrollTo({left: m.offsetLeft - 16, behavior: reduce ? "auto" : "smooth"});
+    } }), {rootMargin:"-45% 0px -50% 0px"});
+    secs.forEach(sec=>so.observe(sec));
+  }
 })();
 render();
 </script>
