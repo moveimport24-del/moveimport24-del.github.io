@@ -3,6 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<script>
+(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+m[i].l=1*new Date();for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r){return;}}
+k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+(window,document,"script","https://mc.yandex.ru/metrika/tag.js","ym");
+ym(113125555,"init",{clickmap:true,trackLinks:true,accurateTrackBounce:true,webvisor:true});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/113125555" style="position:absolute;left:-9999px" alt=""></div></noscript>
 <title>Барбершоп «Кромка»</title>
 <meta name="description" content="Барбершоп «Кромка»: мужские стрижки, фейды и борода. Подберите услугу за 30 секунд — мастер будет знать, что делать.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,7 +24,6 @@
 <meta property="og:url" content="https://moveimport24-del.github.io/kromka.html">
 <meta property="og:locale" content="ru_RU">
 <meta name="theme-color" content="#12392F">
-<!-- YANDEX_METRIKA -->
 </head>
 <body>
 <style>
@@ -197,7 +204,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 32px;justify-content:space-bet
 .cut-cap b{font:800 64px/1 var(--display);font-variant-numeric:tabular-nums;color:var(--ink)}
 .cut-cap span{font:500 12px/1.4 var(--mono);color:var(--muted);letter-spacing:.04em}
 .hair,.beard,.stray,.fadeL{transform-box:fill-box;transition:transform .8s cubic-bezier(.3,1.35,.5,1),opacity .6s ease}
-#h-top{transform-origin:50% 100%}
+#h-top,#h-short{transform-origin:50% 100%}
 #h-bangs,#h-sides,#h-beard{transform-origin:50% 0%}
 .stray{transform-origin:50% 100%}
 .stray.gone{opacity:0;transform:translateY(-6px) scale(.4)}
@@ -313,6 +320,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px 32px;justify-content:space-bet
               <path d="M100 102 q-4 12 2 14" stroke="#B9835C" stroke-width="2" fill="none" stroke-linecap="round"/>
               <g id="h-beard" class="beard"><path d="M57 106 Q58 158 100 178 Q142 158 143 106 Q138 134 120 136 Q100 126 80 136 Q62 134 57 106 Z M86 124 Q100 114 114 124 Q100 121 86 124 Z" fill="#2B211C"/></g>
               <path d="M91 129 q9 5 18 0" stroke="#8A4B3A" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+              <g id="h-short" class="hair" opacity="0"><path d="M56 92 Q52 60 70 46 Q86 36 104 37 Q128 38 140 50 Q148 62 144 92 L140 92 Q139 74 130 66 Q116 60 100 62 Q82 60 70 66 Q61 74 60 92 Z M76 50 Q96 28 126 42 Q112 39 99 44 Q88 46 76 50 Z" fill="#2B211C"/><path d="M82 46 q10 -5 20 -4 M108 43 q10 1 17 6" stroke="#4A3A30" stroke-width="1.6" fill="none" stroke-linecap="round"/></g>
               <g id="h-top" class="hair"><path d="M50 84 Q40 42 74 28 Q100 14 128 26 Q162 40 150 84 Q146 64 132 58 Q112 68 92 60 Q70 68 60 64 Q52 70 50 84 Z" fill="#2B211C"/></g>
               <g id="h-bangs" class="hair"><path d="M62 58 Q70 94 84 82 Q88 98 99 84 Q108 98 116 82 Q126 94 138 58 Z" fill="#2B211C"/></g>
               <g stroke="#2B211C" stroke-width="3" fill="none" stroke-linecap="round">
@@ -459,6 +467,11 @@ const CONFIG = {
   firstVisitDiscount: 0.15
 };
 
+/* Яндекс Метрика: цели quiz_start → quiz_result → quiz_lead */
+const METRIKA_ID = 113125555;
+const goalsSent = {};
+function goal(name){ if (goalsSent[name]) return; goalsSent[name]=1; try{ if (window.ym && METRIKA_ID) ym(METRIKA_ID,"reachGoal",name); }catch(_){} }
+
 const SERVICES = {
   cut:   {name:"Мужская стрижка", min:60, price:1600},
   fade:  {name:"Фейд / скин-фейд", min:60, price:1800},
@@ -596,11 +609,17 @@ function sparkle(){
 function updateCut(stage){
   const a = state.a, p = stage/6;
   const hp = a.what==="beard" ? Math.min(p,.3) : p;
-  const topY = 1 - hp*(a.what==="clip" ? .72 : .5);
-  $("h-top").style.transform = `scale(${1-hp*.08},${topY})`;
-  $("h-bangs").style.transform = `scaleY(${Math.max(.05,1-hp*1.1)})`;
-  $("h-sides").style.transform = `scaleY(${Math.max(.08,1-hp*1.05)})`;
-  $("h-sides").style.opacity = 1 - hp*.4;
+  const cl = (x)=>Math.max(0,Math.min(1,x));
+  const swap = cl((hp-.35)/.4);            // 0 → длинные волосы, 1 → короткая стрижка
+  $("h-top").style.transform = `scale(${1-hp*.06},${1-hp*.25})`;
+  $("h-top").style.opacity = 1 - swap;
+  $("h-bangs").style.transform = `scaleY(${Math.max(.1,1-hp*1.1)})`;
+  $("h-bangs").style.opacity = 1 - cl((hp-.3)/.35);
+  $("h-sides").style.transform = `scaleY(${Math.max(.1,1-hp*1.05)})`;
+  $("h-sides").style.opacity = 1 - cl((hp-.4)/.4);
+  const shortY = a.what==="clip" ? .9 : 1;
+  $("h-short").style.opacity = 1;
+  $("h-short").style.transform = `scaleY(${(.85+.15*swap)*shortY})`;
   const fadeTo = a.style==="fade" ? 1 : .6;
   $("h-fade").style.opacity = Math.max(0,(hp-.45)/.55)*fadeTo;
   const beard = $("h-beard");
@@ -635,6 +654,7 @@ function renderStep(i){
     opts.map(o=>`<button type="button" class="opt" data-v="${esc(o.v)}" aria-pressed="${state.a[st.key]===o.v}"><span>${esc(o.t)}</span>${o.s?`<small>${esc(o.s)}</small>`:""}</button>`).join("") +
     `</div><div class="qnav">${i>0?`<button type="button" class="link" id="back">← Назад</button>`:"<span></span>"}</div>`;
   box.querySelectorAll(".opt").forEach(b=>b.addEventListener("click",()=>{
+    if (i===0) goal("quiz_start");
     state.a[st.key]=b.dataset.v;
     if (st.key==="what") delete state.a.style;
     state.step++; render();
@@ -643,6 +663,7 @@ function renderStep(i){
 }
 
 function renderForm(){
+  goal("quiz_result");
   const r = calc();
   box.innerHTML = head("Ваш результат", 100) + `
     <div class="result">
@@ -663,7 +684,7 @@ function renderForm(){
           ${["Telegram","WhatsApp","Звонок"].map(c=>`<button type="button" class="opt" data-c="${c}" aria-pressed="${state.contact===c}">${c}</button>`).join("")}
         </div>
       </div>
-      <input id="f-hp" name="company" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
+      <input id="f-hp" name="kr_hp_7x" tabindex="-1" autocomplete="new-password" data-lpignore="true" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
       <div class="err" id="f-err" role="alert"></div>
       <button class="btn btn-main" style="width:100%" type="submit" id="f-send">Получить время записи</button>
       <p class="consent">Нажимая кнопку, вы соглашаетесь на обработку персональных данных. Не звоним с рекламой.</p>
@@ -727,7 +748,7 @@ async function submit(e){
     }catch(_){ sent = false; }
     if (!sent){ btn.disabled=false; btn.textContent="Получить время записи"; err.textContent="Заявка не ушла — проверьте интернет и нажмите ещё раз. Или позвоните: +7 (900) 000-00-00."; return; }
   }
-  if (typeof ym === "function"){ try{ ym(0,"reachGoal","quiz_lead"); }catch(_){} }
+  goal("quiz_lead");
 
   box.innerHTML = `<div class="done">${head("Готово", 100)}
     <h3>Заявка принята</h3>
